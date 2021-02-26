@@ -1,9 +1,18 @@
-#PyBank
+# Python Challenge--PyBank
+
+
+######################################################################
+#This here is the Header where I imported my modules and my csv file.#
+######################################################################
 
 import os
 import csv
 
 pyBank_csv = os.path.join(os.path.dirname(__file__), 'Resources', 'budget_data.csv')
+
+####################################################################################
+#This here where I have a function to display my output in terminal and output file#
+####################################################################################
 
 loopTest = 0
 #row = 0
@@ -56,6 +65,11 @@ def budget_calc(bData): #Calculation  Function
     file_object.write(f"Greatest Decrease in Profits:  {posDate_List[21]} {posNum_List[21]} \r\n")
     file_object.close() 
 
+
+######################################
+#This where I am reading my csv file.#
+######################################
+
 #============================================================
 # Reading in the CSV file
 
@@ -63,6 +77,11 @@ with open(pyBank_csv, 'r') as myfile:
 
     # Split the data on commas
     csvreader = csv.reader(myfile, delimiter=',')
+
+########################################################################
+#This where I set up most of my vaiables to be used throughout my code.#
+########################################################################
+
 #============================================================
  # Setting variables
 
@@ -79,6 +98,10 @@ with open(pyBank_csv, 'r') as myfile:
     #print(csv.reader)  #testing variable
     #header = next(csvreader)
     
+
+####################################################################################
+#This where I am looping through my csv file and creating lists and more variables.#
+####################################################################################
 
 #============================================================    
 # Looping through the data and setting more variables
@@ -120,6 +143,11 @@ with open(pyBank_csv, 'r') as myfile:
             #testing variable and placeholder
             #if (int(lines[(i)][1])):
             #print(previousLine)
+
+##############################################################
+#This where I am checking if header is in list and bypassing.#
+##############################################################
+
 #============================================================    
 #checking if header is in list and bypassing
             if (previousLine == (lines[0][1])): #check if header list and bypassing
@@ -163,6 +191,11 @@ with open(pyBank_csv, 'r') as myfile:
     count = 0
     #print(listposNum_length)
     #print(listP_length)
+
+#################################################################################################################
+#This where I am performing my list functions. I was unable to get the increase and decrease functions working. #
+#Consequently, I hardcoded the indexes into the functions to make them work.					# 
+#################################################################################################################
    
 #============================================================    
 # Performing list functions
@@ -196,6 +229,10 @@ with open(pyBank_csv, 'r') as myfile:
     
     #print(Chng)
     #print(averageChng)
+
+##############################################
+#This where I am calling the output function.#
+##############################################
 
 #============================================================    
 # Calling Function

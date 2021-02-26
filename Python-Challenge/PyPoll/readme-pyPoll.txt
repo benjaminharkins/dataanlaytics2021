@@ -1,4 +1,9 @@
-#PyPoll
+# Python Challenge--PyPoll
+
+
+######################################################################
+#This here is the Header where I imported my modules and my csv file.#
+######################################################################
 
 import os
 import csv
@@ -6,7 +11,9 @@ import csv
 pyPoll_csv = os.path.join(os.path.dirname(__file__), 'Resources', 'election_data.csv')
 
  
-
+####################################################################################
+#This here where I have a function to display my output in terminal and output file#
+####################################################################################
 
 # Define the function 
 def election_calc(eData): #Calculation  Function
@@ -43,6 +50,10 @@ def election_calc(eData): #Calculation  Function
     file_object.write(f"Winner: {winner} \r\n")
     file_object.close() 
 
+######################################
+#This where I am reading my csv file.#
+######################################
+
 #============================================================
 # Reading in the CSV file
 
@@ -53,6 +64,10 @@ with open(pyPoll_csv, 'r') as myfile:
  
     lines = list(csvreader)
 
+
+########################################################################
+#This where I set up most of my vaiables to be used throughout my code.#
+########################################################################
  #============================================================
  # Setting variables
     
@@ -73,6 +88,11 @@ with open(pyPoll_csv, 'r') as myfile:
     oString = "O'Tooley"
 
     #header = next(csvreader)
+
+####################################################################################
+#This where I am looping through my csv file and creating lists for each candidate.#
+####################################################################################
+
 #============================================================    
 # Looping through the data
     
@@ -91,6 +111,10 @@ with open(pyPoll_csv, 'r') as myfile:
         elif (sorted_lines_list[i][2] == oString):
             oTooley_list.append(sorted_lines_list[i])
            
+
+###############################################################################################################
+#This where I am getting the total votes for each candidate using the length funtion of their respective list.#
+###############################################################################################################
 #============================================================
 # Getting the length of lists to determine the number of votes for each contestant
    
@@ -99,6 +123,11 @@ with open(pyPoll_csv, 'r') as myfile:
     l_total = (len(Li_list))
     o_total = (len(oTooley_list))
 
+
+
+#################################################################################################################
+#This where I am determining the percentage of the total votes each contestant received and checking the winner.#
+#################################################################################################################
 #============================================================
 # Determining the  percentage of the total votes each contestant attained
 
@@ -119,7 +148,9 @@ with open(pyPoll_csv, 'r') as myfile:
     elif (k_percentage > 50):
         winner = "Khan"
 
-
+##############################################
+#This where I am calling the output function.#
+##############################################
 #============================================================
 # Calling function
 
@@ -130,5 +161,3 @@ with open(pyPoll_csv, 'r') as myfile:
     #print(o_total)#testing variable
     #print(pL_total) #testing variable
     election_calc(lines) #Calling module
-#print(pyPoll_csv)
-   
