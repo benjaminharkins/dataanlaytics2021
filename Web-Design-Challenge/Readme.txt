@@ -1,0 +1,483 @@
+# Web-Design Challenge
+
+################################################################
+#Please find the csvConversion notebook listed among the files.#
+################################################################
+
+##Below is the code from the junyper noteboock used to conver the cities csv
+##file into an html table for the webpage.
+
+# Dependencies and Setup
+import pandas as pd
+import numpy as np
+import os
+
+# File to Load (Remember to Change These)
+cities_data_csv = os.path.join(os.path.dirname(__name__), 'Resources', 'cities.csv')
+
+# Read Cities Data File and store into Pandas DataFrames
+citiesData = pd.read_csv(cities_data_csv)
+
+
+
+citiesData.head(20)
+
+#Converting dataframe to html
+citiesDataHTML = citiesData.to_html()
+
+#Testing variable
+print(citiesDataHTML)
+
+
+#Writing dataframe to html file
+text_file = open("data.html", "w")
+text_file.write(citiesDataHTML)
+text_file.close()
+#################################################################
+#################################################################
+
+############################################
+#Below is the code for the index.html file #
+############################################
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Setting Webpage page title-->
+  <title>Web-Bootstrap-Challenge</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!-- Setting Webpage header-->
+<div class="text-center" >
+  <h1 style="color:black;">Web-Bootstrap-Challenge</h1>
+  <p></p>
+</div>
+
+</head>
+<body style="background-image: url('https://www-cdn.eumetsat.int/files/styles/16_9_large/s3/2020-06/ASpot_Weather.jpg?h=d1cb525d&itok=lvYWh_W8');">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<!-- Setting Webpage navbar and drop down menu-->
+  <div class="navigation" style = "background-color:rgba(0, 0, 0, 0.5);">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+        <a class="navbar-brand" href="index.html" style="color:grey;">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        PLOTS
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style = "background-color:rgba(0, 0, 0, 0.5);">
+                        <a class="dropdown-item" href="temp.html" style="color:grey;">Max Temperature</a>
+                        <a class="dropdown-item" href="humidity.html" style="color:grey;">Humidity</a>
+                        <a class="dropdown-item" href="cloudiness.html" style="color:grey;">Cloudiness</a>
+                        <a class="dropdown-item" href="wind_speed.html" style="color:grey;">Wind Speed</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="comparison.html">COMPARISON</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="data.html">DATA</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Columns are responsive for size-->
+
+<!-- Describing the purpose of the webpage and project-->
+<div class="container" style="color:black;">
+  <div class="row">
+    <div class="col-md-12">
+      <p>In this homework, I will be creating a visualization dashboard website using visualizations I have created in past assignments. Specifically, I will be plotting using [weather data](Resources/cities.csv).
+
+        In building this dashboard, I will create individual pages for each plot and a means by which users can navigate between them. These pages will contain the visualizations and their corresponding explanations. I will also have a landing page, a page where users can see a comparison of all of the plots, and another page where users can view the data used to build them.</p>
+    </div>
+
+    <!-- Showing the vizualization pages and image previews-->
+    </div>
+    <h3 class="text-center">Visualization Page Previews</h3>
+	<div class="row">
+    
+    <div class="col-sm-6 col-md-3">
+      <p>
+          <h5>City Latitude vs. Max Temperature</h5>
+          <a href="temp.html">
+            <img alt="Temperature plot" src="assets/images/Fig1.PNG" class="img-thumbnail">
+         </a>
+     </p>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <p>
+            <h5>City Latitude vs. Humidity</h5>
+            <a href="humidity.html">
+              <img alt="Humidity plot" src="assets/images/Fig2.PNG" class="img-thumbnail">
+           </a>
+       </p>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <p>
+            <h5>City Latitude vs. Cloudiness</h5>
+            <a href="cloudiness.html">
+              <img alt="Cloudiness plot" src="assets/images/Fig3.PNG" class="img-thumbnail">
+           </a>
+       </p>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <p>
+            <h5>City Latitude vs. Wind Speed</h5>
+            <a href="wind_speed.html">
+              <img alt="Wind Speed plot" src="assets/images/Fig4.PNG" class="img-thumbnail">
+           </a>
+       </p>
+    </div>	
+   </div>
+
+</div>
+</body>
+</html>
+
+#################################################################
+#################################################################
+
+#################################################
+#Below is the code for the cloudiness.html file #
+#################################################
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Setting Webpage page title-->
+  <title>Web-Bootstrap-Challenge</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!-- Setting Webpage header-->
+<div class="text-center" >
+  <h1 style="color:black;">Web-Bootstrap-Challenge</h1>
+  <p></p>
+</div>
+
+</head>
+<body style="background-image: url('https://www-cdn.eumetsat.int/files/styles/16_9_large/s3/2020-06/ASpot_Weather.jpg?h=d1cb525d&itok=lvYWh_W8');">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<!-- Setting Webpage navbar and drop down menu-->
+  <div class="navigation" style = "background-color:rgba(0, 0, 0, 0.5);">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+        <a class="navbar-brand" href="index.html" style="color:grey;">Return to Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        PLOTS
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style = "background-color:rgba(0, 0, 0, 0.5);">
+                        <a class="dropdown-item" href="temp.html" style="color:grey;">Max Temperature</a>
+                        <a class="dropdown-item" href="humidity.html" style="color:grey;">Humidity</a>
+                        <a class="dropdown-item" href="cloudiness.html" style="color:grey;">Cloudiness</a>
+                        <a class="dropdown-item" href="wind_speed.html" style="color:grey;">Wind Speed</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="comparison.html">COMPARISON</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="data.html">DATA</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="row">
+    
+    <div class="col-sm-6 col-md-12 text-center" style="color:grey;">
+      <p>
+          <h5>City Latitude vs. Cloudiness</h5>
+          <img src="assets/images/Fig3.PNG">
+      </p> 
+        </div>
+        <div class="col-sm-6 col-md-4 text-center">
+            <p>
+           </p>
+          </div>        
+    <div class="col-sm-6 col-md-4 text-center" style="color:black;">
+        <p>
+            From this graphical plot, one can derive the conclusion that cities' latitude and their cloudiness share no significant connection.
+       </p>
+      </div>
+      <div class="col-sm-6 col-md-4 text-center" >
+        <p>
+            
+       </p>
+      </div>
+</body>
+</html>
+
+#################################################################
+#################################################################
+
+#################################################
+#Below is the code for the wind_speed.html file #
+#################################################
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Setting Webpage page title-->
+  <title>Web-Bootstrap-Challenge</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!-- Setting Webpage header-->
+<div class="text-center" >
+  <h1 style="color:black;">Web-Bootstrap-Challenge</h1>
+  <p></p>
+</div>
+
+</head>
+<body style="background-image: url('https://www-cdn.eumetsat.int/files/styles/16_9_large/s3/2020-06/ASpot_Weather.jpg?h=d1cb525d&itok=lvYWh_W8');">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<!-- Setting Webpage navbar and drop down menu-->
+  <div class="navigation" style = "background-color:rgba(0, 0, 0, 0.5);">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+        <a class="navbar-brand" href="index.html" style="color:grey;">Return to Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        PLOTS
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style = "background-color:rgba(0, 0, 0, 0.5);">
+                        <a class="dropdown-item" href="temp.html" style="color:grey;">Max Temperature</a>
+                        <a class="dropdown-item" href="humidity.html" style="color:grey;">Humidity</a>
+                        <a class="dropdown-item" href="cloudiness.html" style="color:grey;">Cloudiness</a>
+                        <a class="dropdown-item" href="wind_speed.html" style="color:grey;">Wind Speed</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="comparison.html">COMPARISON</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="data.html">DATA</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="row">
+    
+    <div class="col-sm-6 col-md-12 text-center" style="color:grey;">
+      <p>
+          <h5>City Latitude vs. Wind Speed</h5>
+          <img src="assets/images/Fig4.PNG">
+      </p> 
+        </div>
+        <div class="col-sm-6 col-md-4 text-center">
+            <p>
+           </p>
+          </div>        
+    <div class="col-sm-6 col-md-4 text-center" style="color:black;">
+        <p>
+            From this graphical plot, one can derive the conclusion that cities' latitude and their wind speed share no significant connection.
+       </p>
+      </div>
+      <div class="col-sm-6 col-md-4 text-center" >
+        <p>
+            
+       </p>
+      </div>
+</body>
+</html>
+
+#################################################################
+#################################################################
+
+###############################################
+#Below is the code for the humidity.html file #
+###############################################
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Setting Webpage page title-->
+  <title>Web-Bootstrap-Challenge</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!-- Setting Webpage header-->
+<div class="text-center" >
+  <h1 style="color:black;">Web-Bootstrap-Challenge</h1>
+  <p></p>
+</div>
+
+</head>
+<body style="background-image: url('https://www-cdn.eumetsat.int/files/styles/16_9_large/s3/2020-06/ASpot_Weather.jpg?h=d1cb525d&itok=lvYWh_W8');">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<!-- Setting Webpage navbar and drop down menu-->
+  <div class="navigation" style = "background-color:rgba(0, 0, 0, 0.5);">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+        <a class="navbar-brand" href="index.html" style="color:grey;">Return to Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        PLOTS
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style = "background-color:rgba(0, 0, 0, 0.5);">
+                        <a class="dropdown-item" href="temp.html" style="color:grey;">Max Temperature</a>
+                        <a class="dropdown-item" href="humidity.html" style="color:grey;">Humidity</a>
+                        <a class="dropdown-item" href="cloudiness.html" style="color:grey;">Cloudiness</a>
+                        <a class="dropdown-item" href="wind_speed.html" style="color:grey;">Wind Speed</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="comparison.html">COMPARISON</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="data.html">DATA</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="row">
+    
+    <div class="col-sm-6 col-md-12 text-center" style="color:grey;">
+      <p>
+          <h5>City Latitude vs. Humidity</h5>
+          <img src="assets/images/Fig2.PNG">
+      </p> 
+        </div>
+        <div class="col-sm-6 col-md-4 text-center">
+            <p>
+           </p>
+          </div>        
+    <div class="col-sm-6 col-md-4 text-center" style="color:black;">
+        <p>
+            From this graphical plot, one can derive the conclusion that cities in a tropical climate have an overall higher humidity than others. The graph also shows that as on gets father away from the tropical climate, the humidity decrease.
+       </p>
+      </div>
+      <div class="col-sm-6 col-md-4 text-center" >
+        <p>
+            
+       </p>
+      </div>
+</body>
+</html>
+
+#################################################################
+#################################################################
+
+###########################################
+#Below is the code for the temp.html file #
+###########################################
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Setting Webpage page title-->
+  <title>Web-Bootstrap-Challenge</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!-- Setting Webpage header-->
+<div class="text-center" >
+  <h1 style="color:black;">Web-Bootstrap-Challenge</h1>
+  <p></p>
+</div>
+
+</head>
+<body style="background-image: url('https://www-cdn.eumetsat.int/files/styles/16_9_large/s3/2020-06/ASpot_Weather.jpg?h=d1cb525d&itok=lvYWh_W8');">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<!-- Setting Webpage navbar and drop down menu-->
+  <div class="navigation" style = "background-color:rgba(0, 0, 0, 0.5);">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+        <a class="navbar-brand" href="index.html" style="color:grey;">Return to Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        PLOTS
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style = "background-color:rgba(0, 0, 0, 0.5);">
+                        <a class="dropdown-item" href="temp.html" style="color:grey;">Max Temperature</a>
+                        <a class="dropdown-item" href="humidity.html" style="color:grey;">Humidity</a>
+                        <a class="dropdown-item" href="cloudiness.html" style="color:grey;">Cloudiness</a>
+                        <a class="dropdown-item" href="wind_speed.html" style="color:grey;">Wind Speed</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="comparison.html">COMPARISON</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="data.html">DATA</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="row">
+    
+    <div class="col-sm-6 col-md-12 text-center" style="color:grey;">
+      <p>
+          <h5>City Latitude vs. Max Temperature</h5>
+          <img src="assets/images/Fig1.PNG">
+      </p> 
+        </div>
+        <div class="col-sm-6 col-md-4 text-center">
+            <p>
+           </p>
+          </div>        
+    <div class="col-sm-6 col-md-4 text-center" style="color:black;">
+        <p>
+            From this graphical plot, one can derive the conclusion that cities closer to the Equator have an overall higher temperature than those farther away. The graph also shows that as on gets father away from the Equator, the temperatures decrease. This shows the cities and their latitude are significantly connected to their temperature.
+       </p>
+      </div>
+      <div class="col-sm-6 col-md-4 text-center" >
+        <p>
+            
+       </p>
+      </div>
+</body>
+</html>
