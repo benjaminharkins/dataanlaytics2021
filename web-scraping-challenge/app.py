@@ -1,3 +1,5 @@
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from flask import Flask, render_template, redirect,jsonify
 from flask_pymongo import PyMongo
 import scrape_mars

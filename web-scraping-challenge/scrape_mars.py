@@ -1,3 +1,5 @@
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from splinter import Browser
 from bs4 import BeautifulSoup as bs
 import time
@@ -23,8 +25,9 @@ def scrape_info():
     browser.visit(url)
 
     html = browser.html
-    soup = BeautifulSoup(html, "html.parser")
+    soup = bs(html, "html.parser")
 
+    news_pull = soup.find("div", class_="list_text")
     news_title = news_pull.find("div", class_="content_title").get_text()
 
     news_briefing = news_pull.find("div", class_="article_teaser_body").get_text()
@@ -41,7 +44,7 @@ def scrape_info():
     browser.visit(url)
 
     html = browser.html
-    soup = BeautifulSoup(html, "html.parser")
+    soup = bs(html, "html.parser")
 
     img_url = soup.find(class_="headerimage fade-in").get("src")
 
@@ -82,7 +85,7 @@ def scrape_info():
     browser.visit(url)
 
     html = browser.html
-    soup = BeautifulSoup(html, "html.parser")
+    soup = bs(html, "html.parser")
 
     #Finding images
     images_hemispheres=soup.find("div",class_='collapsible results')
@@ -106,7 +109,7 @@ def scrape_info():
             forward_url=main_url+link
             browser.visit(forward_url)
             html = browser.html
-            soup = BeautifulSoup(html, 'html.parser')
+            soup = bs(html, 'html.parser')
             hemisphere2=soup.find("div",class_= "downloads")
             image=hemisphere2.ul.a["href"]
             hemisphere_dict={}
@@ -122,9 +125,9 @@ def scrape_info():
     mars_data_dict={
         "mars_news_title": news_title,
         "mars_news_paragraph": news_briefing,
-        "featured_mars_image": image_url,
+        "featured_mars_image": img_url,
         "mars_facts": mars_html_table,
-        "mars_hemisphers": hemisphere_image_urls
+        "mars_hemispheres": hemisphere_image_urls
     }
 
     # Quit the browser
