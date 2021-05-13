@@ -3,7 +3,7 @@ var tableData = data;
 
 // YOUR CODE HERE!
 //setting variables
-var tbody = d3.select("tbody");
+var tableBody = d3.select("tbody");
 var filterbtn = d3.select("#filter-btn");
 var inputDates = d3.select("#date");
 var inputCities = d3.select("#city");
@@ -15,7 +15,7 @@ var columns = ["datetime", "city", "state", "country", "shape", "durationMinutes
 var populate = (dataInput) => {
 
 	dataInput.forEach(ufo_sightings => {
-		var row = tbody.append("tr");
+		var row = tableBody.append("tr");
 		columns.forEach(column => row.append("td").text(ufo_sightings[column])
 		)
 	});
@@ -40,7 +40,7 @@ filterbtn.on("click", () => {
 	console.log(filterData)
 
 	// Add filtered sighting to table
-	tbody.html("");
+	tableBody.html("");
 
 	var response = {
 		filterData, filterCity, filterDate
