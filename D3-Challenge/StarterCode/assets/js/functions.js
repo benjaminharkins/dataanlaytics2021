@@ -1,19 +1,19 @@
-function xScale(csvData, XAxis) {
+function xScale(csvData, cXAxis) {
   // create scales
   let xLinearScale = d3.scaleLinear()
-    .domain([d3.min(csvData, d => d[XAxis]) * 0.9,
-      d3.max(csvData, d => d[XAxis]) * 1.1
+    .domain([d3.min(csvData, d => d[cXAxis]) * 0.9,
+      d3.max(csvData, d => d[cXAxis]) * 1.1
     ])
     .range([0, width]);
 
   return xLinearScale;
 }
 
-function yScale(csvData, YAxis) {
+function yScale(csvData, cYAxis) {
   // create scales
   let yLinearScale = d3.scaleLinear()
-    .domain([d3.min(csvData, d => d[YAxis]) - 1,
-      d3.max(csvData, d => d[YAxis]) + 1
+    .domain([d3.min(csvData, d => d[cYAxis]) - 1,
+      d3.max(csvData, d => d[cYAxis]) + 1
     ])
     .range([height, 0]);
 
@@ -40,38 +40,38 @@ function renderYAxes(newYScale, yAxis) {
   return yAxis;
 }
 
-function renderXCircles(circlesGroup, newXScale, XAxis) {
+function renderXCircles(circlesGroup, newXScale, cXAxis) {
 
   circlesGroup.transition()
     .duration(1000)
-    .attr("cx", d => newXScale(d[XAxis]));
+    .attr("cx", d => newXScale(d[cXAxis]));
 
   return circlesGroup;
 }
 
-function renderYCircles(circlesGroup, newYScale, YAxis) {
+function renderYCircles(circlesGroup, newYScale, cYAxis) {
 
   circlesGroup.transition()
     .duration(1000)
-    .attr("cy", d => newYScale(d[YAxis]));
+    .attr("cy", d => newYScale(d[cYAxis]));
 
   return circlesGroup;
 }
 
-function renderXText(circlesGroup, newXScale, XAxis) {
+function renderXText(circlesGroup, newXScale, cXAxis) {
 
   circlesGroup.transition()
     .duration(1000)
-    .attr("dx", d => newXScale(d[XAxis]));
+    .attr("dx", d => newXScale(d[cXAxis]));
 
   return circlesGroup;
 }
 
-function renderYText(circlesGroup, newYScale, YAxis) {
+function renderYText(circlesGroup, newYScale, cYAxis) {
 
   circlesGroup.transition()
     .duration(1000)
-    .attr("dy", d => newYScale(d[YAxis])+5);
+    .attr("dy", d => newYScale(d[cYAxis])+5);
 
   return circlesGroup;
 }
@@ -81,14 +81,14 @@ let formatter = new Intl.NumberFormat('en-US', {
   currency: 'USD',
 });
 
-function updateToolTip(circlesGroup, XAxis, YAxis) {
+function updateToolTip(circlesGroup, cXAxis, cYAxis) {
 
   let xpercentsign = "";
   let xlabel = "";
-  if (XAxis === "poverty") {
+  if (cXAxis === "poverty") {
     xlabel = "Poverty";
     xpercentsign = "%";
-  } else if (XAxis === "age"){
+  } else if (cXAxis === "age"){
     xlabel = "Age";
   } else {
     xlabel = "Income";
@@ -96,10 +96,10 @@ function updateToolTip(circlesGroup, XAxis, YAxis) {
 
   let ypercentsign = "";
   let ylabel = "";
-  if (YAxis === "healthcare") {
+  if (cYAxis === "healthcare") {
     ylabel = "Healthcare";
     ypercentsign = "%";
-  } else if (YAxis === "smokes"){
+  } else if (cYAxis === "smokes"){
     ylabel = "Smokes";
     ypercentsign = "%";
   } else {
@@ -111,12 +111,12 @@ function updateToolTip(circlesGroup, XAxis, YAxis) {
     .attr("class", "d3-tip")
     .offset([50, -75])
     .html(function(d) {
-      if (XAxis === "income"){
-        let incomelevel = formatter.format(d[XAxis]);
+      if (cXAxis === "income"){
+        let incomelevel = formatter.format(d[cXAxis]);
 
-        return (`${d.state}<br>${xlabel}: ${incomelevel.substring(0, incomelevel.length-3)}${xpercentsign}<br>${ylabel}: ${d[YAxis]}${ypercentsign}`)
+        return (`${d.state}<br>${xlabel}: ${incomelevel.substring(0, incomelevel.length-3)}${xpercentsign}<br>${ylabel}: ${d[cYAxis]}${ypercentsign}`)
       } else {
-        return (`${d.state}<br>${xlabel}: ${d[XAxis]}${xpercentsign}<br>${ylabel}: ${d[YAxis]}${ypercentsign}`)
+        return (`${d.state}<br>${xlabel}: ${d[cXAxis]}${xpercentsign}<br>${ylabel}: ${d[cYAxis]}${ypercentsign}`)
       };
     });
 
